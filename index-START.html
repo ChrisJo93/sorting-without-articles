@@ -62,17 +62,21 @@
 
       const bandList = document.querySelector('#bands');
 
+      function strip(bandItem) {
+        //removing leading articles
+        return bandItem.replace(/^(a |the |An )/i, '').trim();
+      }
       function sortBandList() {
-        const sortedList = bands.sort((lastBand, nextBand) => {
-          return lastBand > nextBand ? 1 : -1;
-          sortedList = str.split();
+        //sorting band list alphabetically
+        const sortedList = bands.sort((a, b) => {
+          return strip(a) > strip(b) ? 1 : -1;
         });
         constructBandList(sortedList);
-        console.log(sortedList);
       }
 
-      function constructBandList(sortedList) {
-        bandList.innerHTML = sortedList
+      function constructBandList(bandName) {
+        //appending sorted list into ul element
+        bandList.innerHTML = bandName
           .map((band) => {
             return `
         <li>
